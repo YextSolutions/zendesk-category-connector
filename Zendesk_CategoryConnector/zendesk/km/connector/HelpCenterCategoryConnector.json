@@ -7,7 +7,7 @@
     "sourceConfig": {
       "apiPullConfig": {
         "requestType": "GET",
-        "url": "https://tags.zendesk.com/api/v2/help_center/en-us/categories.json",
+        "url": "https://${{zendeskSubdomain}}.zendesk.com/api/v2/help_center/en-us/categories.json",
         "authentication": {
           "basicAuthentication": {
             "username": "${{km/connector.zendesk_HelpCenterCategoryConnector.api_username}}",
