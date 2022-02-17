@@ -1,0 +1,158 @@
+{
+  "$id": "zendesk_HelpCenterCategoryConnector",
+  "$schema": "https://schema.yext.com/config/km/connector/v3",
+  "displayName": "Zendesk Help Center Category Connector",
+  "entityType": "zendesk_Category",
+  "source": {
+    "sourceConfig": {
+      "apiPullConfig": {
+        "requestType": "GET",
+        "url": "https://tags.zendesk.com/api/v2/help_center/en-us/categories.json",
+        "authentication": {
+          "basicAuthentication": {
+            "username": "${{km/connector.zendesk_HelpCenterCategoryConnector.api_username}}",
+            "password": "${{km/connector.zendesk_HelpCenterCategoryConnector.api_password}}"
+          }
+        },
+        "paginationControl": {
+          "cursorPagination": {
+            "cursor": "next_page",
+            "cursorType": "FULL_URL",
+            "detectCursorInHeader": false
+          }
+        },
+        "headers": {
+          "": ""
+        },
+        "queryParams": {
+          "per_page": "100"
+        },
+        "dataFormat": "JSON"
+      }
+    },
+    "baseSelector": {
+      "type": "JSON",
+      "header": "Entity Container",
+      "path": "categories"
+    },
+    "selectors": [
+      {
+        "type": "JSON",
+        "header": "ID",
+        "path": "id"
+      },
+      {
+        "type": "JSON",
+        "header": "URL",
+        "path": "url"
+      },
+      {
+        "type": "JSON",
+        "header": "HTML URL",
+        "path": "html_url"
+      },
+      {
+        "type": "JSON",
+        "header": "Position",
+        "path": "position"
+      },
+      {
+        "type": "JSON",
+        "header": "Created Date",
+        "path": "created_at"
+      },
+      {
+        "type": "JSON",
+        "header": "Updated Date",
+        "path": "updated_at"
+      },
+      {
+        "type": "JSON",
+        "header": "Name",
+        "path": "name"
+      },
+      {
+        "type": "JSON",
+        "header": "Rich Text Description",
+        "path": "description"
+      },
+      {
+        "type": "JSON",
+        "header": "Locale",
+        "path": "locale"
+      },
+      {
+        "type": "JSON",
+        "header": "Source Locale",
+        "path": "source_locale"
+      },
+      {
+        "type": "JSON",
+        "header": "Outdated Status",
+        "path": "outdated"
+      }
+    ]
+  },
+  "transforms": [
+    {
+      "extractText": {
+        "inputHeader": "Created Date",
+        "newColumnHeader": "Created Date converted",
+        "extractOperation": "ALL_TEXT_BEFORE",
+        "extractFrom": "FIRST_INSTANCE_MATCHING_TEXT",
+        "valueToFind": {
+          "plainText": {
+            "value": "T",
+            "ignoreCase": false
+          }
+        }
+      }
+    },
+    {
+      "extractText": {
+        "inputHeader": "Updated Date",
+        "newColumnHeader": "Updated Date converted",
+        "extractOperation": "ALL_TEXT_BEFORE",
+        "extractFrom": "FIRST_INSTANCE_MATCHING_TEXT",
+        "valueToFind": {
+          "plainText": {
+            "value": "T",
+            "ignoreCase": false
+          }
+        }
+      }
+    }
+  ],
+  "mappings": [
+    {
+      "field": "zendesk_categoryCreatedDate",
+      "header": "Created Date converted",
+      "subfieldPath": []
+    },
+    {
+      "field": "richTextDescription",
+      "header": "Rich Text Description",
+      "subfieldPath": []
+    },
+    {
+      "field": "entityId",
+      "header": "ID",
+      "subfieldPath": []
+    },
+    {
+      "field": "zendesk_categoryUpdatedDate",
+      "header": "Updated Date converted",
+      "subfieldPath": []
+    },
+    {
+      "field": "landingPageUrl",
+      "header": "HTML URL",
+      "subfieldPath": []
+    },
+    {
+      "field": "name",
+      "header": "Name",
+      "subfieldPath": []
+    }
+  ]
+}

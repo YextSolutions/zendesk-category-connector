@@ -1,0 +1,13 @@
+{
+  "$id": "zendesk_Category.default",
+  "$schema": "https://schema.yext.com/config/km/field-eligibility-group/v1",
+  "name": "Category-default",
+  "entityType": "zendesk_Category",
+  "fields": [
+    "landingPageUrl",
+    "richTextDescription",
+    "zendesk_categoryCreatedDate",
+    "zendesk_categoryUpdatedDate"
+  ],
+  "required": []
+}

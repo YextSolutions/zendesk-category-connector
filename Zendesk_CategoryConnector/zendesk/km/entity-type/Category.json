@@ -1,0 +1,7 @@
+{
+  "$id": "zendesk_Category",
+  "$schema": "https://schema.yext.com/config/km/entity-type/v1",
+  "description": "Use this entity type or organize all of your Zendesk Categories.",
+  "displayName": "Category",
+  "pluralDisplayName": "Categories"
+}
